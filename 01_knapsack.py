@@ -4,8 +4,7 @@ class Item:
     def __init__(self, item_weight: int, item_value: int):
         self.weight = item_weight
         self.value = item_value
-    
-    
+     
 class Knapsack:
     def __init__(self, weight: int, items):
         self.max_weight = weight
@@ -47,4 +46,27 @@ knapsack_01(knapsack, item_list)
 #    sorts it in reverse order based on the value which is gotten by the `attrgetter` function from the `operator` module
 #   `remaining = knapsack.max_weight`
 # 2. stores the `max_weight` attribute of `knapsack` (instance of `Knapsack`)  in the `remaining` variable
-# 3. for loop iterates over each item in the `item_list`, which is 
+# 3. for loop iterates over each item in the `item_list`, which stores all the instances of the `Item` class.
+#   meanwhile, the weight of each item is subtracted from `remaining`
+
+print('Objects in knapsack')
+
+# a counter for the next for loop?
+i = 1
+
+# declare variables for total weight and value
+sum_weight = 0 
+sum_value = 0
+
+for item in knapsack.item_list:
+    sum_weight += item.weight
+    sum_value += item.value
+    print(f'{i}: weight {item.weight}, value {item.value}')
+    i += 1
+
+
+# what is this for? 
+print()
+
+print(f'Total weight of items in knapsack: {sum_weight}')
+print(f'Total value of items in knapsack: {sum_value}')
