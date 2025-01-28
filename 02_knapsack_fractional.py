@@ -52,7 +52,7 @@ if __name__ == '__main__':
     
     item_list = [item1, item2, item3, item4, item5, item6]
     
-    # initialize knapsack with an empty list
+    # initialize knapsack with an empty list instead of creating an initial knapsack list
     knapsack = Knapsack(30, [])
     
     # add items to the knapsack one at a time and then 
