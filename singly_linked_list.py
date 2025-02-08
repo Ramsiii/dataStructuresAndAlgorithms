@@ -1,4 +1,3 @@
-
 class Node:
     def __init__(self, data):
         self.data = data
@@ -57,6 +56,26 @@ class LinkedList:
         else:
             new_node.next = self.head
             self.head = new_node
+
+    def del_node(self, target_data):
+        current = self.head
+        previous = None
+    
+        while current is not None:
+            if current.data == target_data:
+                if previous:  # If there's a previous node
+                    if current.next is not None:
+                        previous.next = current.next  # Point previous -> next node
+                    else:
+                        previous.next = None
+                else:
+                    self.head = current.next
+                return
+            previous = current
+            current = current.next
+                    
+        # If target_data wasn't found, print this:
+        print(f"Node with data '{target_data}' not found")
         
     def print_list(self):
         current = self.head
@@ -71,20 +90,40 @@ if __name__ == '__main__':
     node14 = Node('n')
     node16 = Node('o')
     node17 = Node('p')
+    node18 = Node('q')
 
     l_list.add_node(node14)    
     l_list.add_node(node16)
     l_list.add_node(node17)
+    l_list.add_node(node18)    
     
     node15 = Node('ñ')
     
+    # test insertion of new node after existing node
     l_list.ins_node('n', node15)
     
     l_list.print_list()
     
+    
     node13 = Node('m')
-    
-    l_list.ins_as_head(node13)
-    
+    # test insertion of new node as head
+    l_list.ins_as_head(node13)    
+
     l_list.print_list()
     
+    # test deletion of data from LL 
+    l_list.del_node('ñ')
+    l_list.print_list()
+
+    # test deletion of data not in LL
+    l_list.del_node('a')
+    l_list.print_list()
+    
+    # test deletion of data at head
+    l_list.del_node('m')
+    l_list.print_list()
+    
+    # test deletion of data at tail
+    l_list.del_node('q')
+    l_list.print_list()
+
