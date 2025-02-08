@@ -29,7 +29,8 @@ class LinkedList:
         current = self.head
         
         while current is not None:
-            if current.data == target_data: 
+            if current.data == target_data:
+                
                 # if target_data node is the tail, simply append   
                 if current is self.tail:
                     self.tail.next = new_node
@@ -44,6 +45,18 @@ class LinkedList:
     
         # If target_data wasn't found, print this:
         print(f"Node with data '{target_data}' not found")         
+    
+    def ins_as_head(self,new_node):
+        
+        # if the list is empty:
+        if self.head is None:
+            self.head = new_node
+            self.tail = new_node
+        
+        # if list not empty, insert before head 
+        else:
+            new_node.next = self.head
+            self.head = new_node
         
     def print_list(self):
         current = self.head
@@ -66,6 +79,12 @@ if __name__ == '__main__':
     node15 = Node('ñ')
     
     l_list.ins_node('n', node15)
+    
+    l_list.print_list()
+    
+    node13 = Node('m')
+    
+    l_list.ins_as_head(node13)
     
     l_list.print_list()
     
