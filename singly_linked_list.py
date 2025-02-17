@@ -19,14 +19,15 @@ class LinkedList:
             new_node.next = None
         
         # if there are one or more nodes. 
-        # new_node is set to point at None in the Node class
+        # new_node is set to point at None in the Node class with the .next attribute
         else:
             # point tail node at new_node (befor this action: self.tail.next is None (empty)
             self.tail.next = new_node
             # point tail at new_node
             self.tail = new_node
             new_node.next = None
-            
+
+# insert a new node following the node with target_data, e.g. my_node = Node('target') 
     def ins_node(self, target_data, new_node):
         current = self.head
         
@@ -48,7 +49,8 @@ class LinkedList:
     
         # If target_data wasn't found, print this:
         print(f"Node with data '{target_data}' not found")         
-    
+
+# insert a new node as the head 
     def ins_as_head(self,new_node):
         
         # if the list is empty:
@@ -62,6 +64,7 @@ class LinkedList:
             new_node.next = self.head
             self.head = new_node
 
+# delete a node based on the data attribute of the Node class
     def del_node(self, target_data):
         current = self.head
         previous = None
@@ -81,7 +84,8 @@ class LinkedList:
                     
         # If target_data wasn't found, print this:
         print(f"Node with data '{target_data}' not found")
-        
+
+# print all nodes with pointers  
     def print_list(self):
         current = self.head
         while current is not None:
@@ -89,7 +93,7 @@ class LinkedList:
             current = current.next
         print("None")   
 
-
+# delete head node
     def del_head_node(self):
         # if there is more than one node:
         if self.head is not None and self.head.next is not None:
@@ -100,7 +104,8 @@ class LinkedList:
             self.tail = None
         else:
             print(f'This linked list is empty.')
-            
+
+# delete tail node 
     def del_tail_node(self):
         
         if self.head is None:
@@ -121,6 +126,14 @@ class LinkedList:
 
         current.next = None
         self.tail = current
+        
+# check if Linked List is empty
+
+    def is_empty(self):
+        if self.head is None:
+            return True
+        else:
+            return False
         
         
 if __name__ == '__main__':
@@ -193,6 +206,9 @@ if __name__ == '__main__':
     print('Linked List:')
     l_list.print_list()
         
+    print("\ntest is_empty method with non-empty linked list")
+    print(f"is l_list empty? {l_list.is_empty()}")
+
     
     # LL2 --------------------
     
@@ -206,4 +222,7 @@ if __name__ == '__main__':
 
     print('Test del_tail_node funciton:')
     l_list2.del_tail_node()
+    
+    print("\ntest is_empty method with empty linked list")
+    print(f"is l_list2 empty? {l_list2.is_empty()}")
     
