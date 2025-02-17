@@ -5,12 +5,29 @@ class Node:
         self.next = None
     
 class LinkedList:
-    # head and tail are not parameters because instances do not require them as arguments
+    
+    """
+    LinkedList class
+    
+    Methods:
+    - append(self, new_node): adds a new node to tail of LL, 
+        either to an empty LL as head and tail or to the end as tail
+    - ins_node(self, target_data, new_node): inserts a new node following the node with target_data
+    - push(self,new_node): inserts a new node as the head aka prepend()
+    - remove(self, target_data): removes the first instance of a node based on the data attribute of the Node class
+    - del_head_node(self): deletes head node (without returning it) and reassigns head to next node or None (if LL then empty)
+    - del_tail_node(self): deletes tail node (without returning it) and reassigns tail to previous node or None (if LL then empty)
+    - is_empty(self): checks if LL is empty, returns True if empty, False if not
+    - print_list(self): prints all nodes with pointers as " -> "
+    """
+    
+# head and tail are not parameters because instances do not require them as arguments
     def __init__(self):
         self.head = None
         self.tail = None
 
-    def add_node(self, new_node):
+# adds a new node to end of LL, either to an empty list or to the end
+    def append(self, new_node):
         
         # if the list is empty:
         if self.head is None:
@@ -27,7 +44,7 @@ class LinkedList:
             self.tail = new_node
             new_node.next = None
 
-# insert a new node following the node with target_data, e.g. my_node = Node('target') 
+# inserts a new node following the node with target_data, e.g. my_node = Node('target') 
     def ins_node(self, target_data, new_node):
         current = self.head
         
@@ -50,8 +67,8 @@ class LinkedList:
         # If target_data wasn't found, print this:
         print(f"Node with data '{target_data}' not found")         
 
-# insert a new node as the head 
-    def ins_as_head(self,new_node):
+# inserts a new node as the head aka prepend()
+    def push(self,new_node):
         
         # if the list is empty:
         if self.head is None:
@@ -64,8 +81,8 @@ class LinkedList:
             new_node.next = self.head
             self.head = new_node
 
-# delete a node based on the data attribute of the Node class
-    def del_node(self, target_data):
+# removes the first instance of a node based on the data attribute of the Node class
+    def remove(self, target_data):
         current = self.head
         previous = None
     
@@ -85,15 +102,7 @@ class LinkedList:
         # If target_data wasn't found, print this:
         print(f"Node with data '{target_data}' not found")
 
-# print all nodes with pointers  
-    def print_list(self):
-        current = self.head
-        while current is not None:
-            print(current.data, end=" -> ")
-            current = current.next
-        print("None")   
-
-# delete head node
+# deletes head node
     def del_head_node(self):
         # if there is more than one node:
         if self.head is not None and self.head.next is not None:
@@ -127,14 +136,21 @@ class LinkedList:
         current.next = None
         self.tail = current
         
-# check if Linked List is empty
+# checks if LL is empty
 
     def is_empty(self):
         if self.head is None:
             return True
         else:
             return False
-        
+
+# prints all nodes with pointers as " -> "
+    def print_list(self):
+        current = self.head
+        while current is not None:
+            print(current.data, end=" -> ")
+            current = current.next
+        print("None")           
         
 if __name__ == '__main__':
     
@@ -146,9 +162,9 @@ if __name__ == '__main__':
     node17 = Node('p')
     node18 = Node('q')
 
-    print("\nAdd two nodes to empty LL.")
-    l_list.add_node(node14)    
-    l_list.add_node(node16)
+    print("\nAppend two nodes to empty LL.")
+    l_list.append(node14)    
+    l_list.append(node16)
 
     print('Linked List:')
     l_list.print_list()
@@ -158,10 +174,10 @@ if __name__ == '__main__':
     print('Linked List:')
     l_list.print_list()
 
-    print("Add node16 'o' back in. Add two more nodes:")
-    l_list.add_node(node16)
-    l_list.add_node(node17)
-    l_list.add_node(node18)    
+    print("Append node16 'o' back in. Append two more nodes:")
+    l_list.append(node16)
+    l_list.append(node17)
+    l_list.append(node18)    
     
     print('Linked List:')
     l_list.print_list()
@@ -175,33 +191,33 @@ if __name__ == '__main__':
     
     
     node13 = Node('m')
-    print("\ntest insertion of new node13 'm' as head")
-    l_list.ins_as_head(node13)    
+    print("\ntest push(): insertion of new node13 'm' as head")
+    l_list.push(node13)    
 
     print('Linked List:')
     l_list.print_list()
     
-    print("\ntest deletion of data 'ñ' from LL") 
-    l_list.del_node('ñ')
+    print("\ntest remove() method, i.e. deletion of data 'ñ' from LL") 
+    l_list.remove('ñ')
     print('Linked List:')
     l_list.print_list()
 
-    print("\ntest deletion of data 'a' not in LL")
-    l_list.del_node('a')
+    print("\ntest remove() method, i.e. deletion of data 'a' not in LL")
+    l_list.remove('a')
     print('Linked List:')
     l_list.print_list()
     
-    print("\ntest deletion of data 'm' at head")
-    l_list.del_node('m')
+    print("\ntest remove() method, i.e. deletion of data 'm' at head")
+    l_list.remove('m')
     print('Linked List:')
     l_list.print_list()
     
-    print("\ntest deletion of data 'q' at tail")
-    l_list.del_node('q')
+    print("\ntest remove() method, i.e. deletion of data 'q' at tail")
+    l_list.remove('q')
     print('Linked List:')
     l_list.print_list()
     
-    print("\ntest deletion of head node")
+    print("\ntest remove() method, i.e. deletion of head node")
     l_list.del_head_node()
     print('Linked List:')
     l_list.print_list()
